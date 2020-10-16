@@ -13,6 +13,7 @@ if MYPY:
     from typing import Optional
     from typing import Tuple
     from typing import Type
+    from typing import Union
     from typing_extensions import Literal
 
     ExcInfo = Tuple[
@@ -31,8 +32,7 @@ if MYPY:
     ErrorProcessor = Callable[[Event, ExcInfo], Optional[Event]]
     BreadcrumbProcessor = Callable[[Breadcrumb, BreadcrumbHint], Optional[Breadcrumb]]
 
-    # booleans count as instances of Number, so this covers both return types
-    TracesSampler = Callable[[SamplingContext], Number]
+    TracesSampler = Callable[[SamplingContext], Union[Number, bool]]
 
     # https://github.com/python/mypy/issues/5710
     NotImplementedType = Any
